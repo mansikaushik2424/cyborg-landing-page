@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CYBERNETIX // Next-Gen Human-Augmentation Platform</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <!-- Ambient HUD Background Elements -->
+  <div class="grid-overlay"></div>
+  <div class="scanline"></div>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="logo">
+      <span class="logo-icon">⚡</span>
+      <span class="logo-text">CYBER<span class="highlight">NETIX</span></span>
+    </div>
+    <nav class="nav-links">
+      <a href="#hero">System</a>
+      <a href="#augs">Augmentations</a>
+      <a href="#specs">Diagnostics</a>
+      <a href="#contact">Interface</a>
+    </nav>
+    <button class="cta-btn-sm" onclick="scrollToContact()">INITIALIZE</button>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="hero" class="hero-section">
+    <div class="hero-content">
+      <div class="hud-badge">[ STATUS: SYNCING WITH NEURAL MATRIX ]</div>
+      <h1 class="hero-title">
+        EVOLVE BEYOND <br />
+        <span class="glitch" data-text="HUMAN LIMITS">HUMAN LIMITS</span>
+      </h1>
+      <p class="hero-subtitle">
+        Next-generation cybernetic implants and neural integration frameworks designed to enhance speed, cognition, and sensory bandwidth.
+      </p>
+      <div class="hero-actions">
+        <a href="#augs" class="btn-primary">EXPLORE MODS</a>
+        <a href="#specs" class="btn-secondary">SYSTEM DIAGNOSTICS</a>
+      </div>
+    </div>
+    <div class="hero-graphic">
+      <div class="cyber-circle">
+        <div class="inner-core"></div>
+        <div class="hud-stat stat-1"><span>NEURAL SPEED</span><strong>120 TB/s</strong></div>
+        <div class="hud-stat stat-2"><span>LATENCY</span><strong>0.02 ms</strong></div>
+        <div class="hud-stat stat-3"><span>SYNAPSE RATING</span><strong>99.8%</strong></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Augmentations Section -->
+  <section id="augs" class="features-section">
+    <div class="section-header">
+      <h2>// CYBERNETIC UPGRADES</h2>
+      <p>Modular sensory and biomechanical enhancements built for extreme performance.</p>
+    </div>
+    <div class="cards-grid">
+      <div class="cyber-card">
+        <div class="card-tag">MK-VII</div>
+        <div class="card-icon">👁️</div>
+        <h3>Ocular HUD Lens</h3>
+        <p>Real-time thermal imaging, tactical telemetry, and augmented sight across the electromagnetic spectrum.</p>
+        <button class="card-btn">SYS_VIEW</button>
+      </div>
+      <div class="cyber-card highlighted">
+        <div class="card-tag">PRO-SERIES</div>
+        <div class="card-icon">🧠</div>
+        <h3>Neural Synapse Core</h3>
+        <p>Overclock cognitive output and memory retention with zero latency neural processing units.</p>
+        <button class="card-btn">SYS_VIEW</button>
+      </div>
+      <div class="cyber-card">
+        <div class="card-tag">VX-200</div>
+        <div class="card-icon">🦾</div>
+        <h3>Bionic Frame V2</h3>
+        <p>High-grade titanium exoskeleton plating paired with carbon-fiber artificial muscular fibers.</p>
+        <button class="card-btn">SYS_VIEW</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Diagnostics / Metrics Section -->
+  <section id="specs" class="specs-section">
+    <div class="section-header">
+      <h2>// SYSTEM PERFORMANCE</h2>
+      <p>Benchmark data collected across active cyborg deployments.</p>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-number" data-target="99.9">0</div>
+        <div class="stat-label">Neural Uptime (%)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" data-target="2400">0</div>
+        <div class="stat-label">Active Deployments</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" data-target="0.01">0</div>
+        <div class="stat-label">Response Delay (ms)</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact / Access Section -->
+  <section id="contact" class="contact-section">
+    <div class="contact-card">
+      <h2>INITIALIZE NEURAL LINK</h2>
+      <p>Submit your parameters to request early integration access.</p>
+      <form class="cyber-form" onsubmit="event.preventDefault(); handleFormSubmit();">
+        <div class="input-group">
+          <input type="text" id="username" placeholder="CALLSIGN / NAME" required />
+        </div>
+        <div class="input-group">
+          <input type="email" id="useremail" placeholder="NEURAL EMAIL ADDRESS" required />
+        </div>
+        <button type="submit" class="btn-primary full-width">TRANSMIT DATA</button>
+      </form>
+      <div id="form-feedback" class="feedback-msg"></div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>© 2026 CYBERNETIX CORP // TECHFEST IIT BOMBAY CA PROGRAM TASK</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
