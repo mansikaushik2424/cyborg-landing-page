@@ -1,49 +1,300 @@
-// Smooth scrolling to contact section
-function scrollToContact() {
-  document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
-}
 
-// Interactive Form Handling
-function handleFormSubmit() {
-  const name = document.getElementById('username').value;
-  const feedback = document.getElementById('form-feedback');
+/* =========================================
+   NEXUS-9 | INTERACTIONS
+   ========================================= */
 
-  feedback.innerText = `[ SYSTEM ACCEPTED ] :: NEURAL LINK ESTABLISHED FOR OPERATIVE ${name.toUpperCase()}`;
-  feedback.style.color = "#00f0ff";
+document.addEventListener("DOMContentLoaded", () => {
+  const prefersReducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
 
-  // Reset form inputs after submission
-  setTimeout(() => {
-    document.getElementById('username').value = '';
-    document.getElementById('useremail').value = '';
-  }, 1000);
-}
+  // -----------------------------------------
+  // MOBILE NAVIGATION
+  // -----------------------------------------
 
-// Counter animation for performance metrics
-document.addEventListener('DOMContentLoaded', () => {
-  const statNumbers = document.querySelectorAll('.stat-number');
+  const menuToggle = document.getElementById("menuToggle");
+  const navLinks = document.getElementById("navLinks");
+  const navItems = document.querySelectorAll(".nav-link");
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        const target = +entry.target.getAttribute('data-target');
-        let count = 0;
-        const speed = target / 50;
+  function closeMenu() {
+    if (!menuToggle || !navLinks) return;
 
-        const updateCount = () => {
-          count += speed;
-          if (count < target) {
-            entry.target.innerText = count.toFixed(target % 1 !== 0 ? 2 : 0);
-            setTimeout(updateCount, 30);
-          } else {
-            entry.target.innerText = target;
-          }
-        };
+    menuToggle.setAttribute("aria-expanded", "false");
+    menuToggle.setAttribute("aria-label", "Open navigation");
+    navLinks.classList.remove("open");
+  }
 
-        updateCount();
-        observer.unobserve(entry.target);
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener("click", () => {
+      const isOpen =
+        menuToggle.getAttribute("aria-expanded") === "true";
+
+      menuToggle.setAttribute("aria-expanded", String(!isOpen));
+      menuToggle.setAttribute(
+        "aria-label",
+        isOpen ? "Open navigation" : "Close navigation"
+      );
+
+      navLinks.classList.toggle("open", !isOpen);
+    });
+
+    navItems.forEach((link) => {
+      link.addEventListener("click", closeMenu);
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        closeMenu();
+        menuToggle.focus();
       }
     });
-  }, { threshold: 0.5 });
 
-  statNumbers.forEach((stat) => observer.observe(stat));
+    document.addEventListener("click", (event) => {
+      const clickedInsideMenu =
+        navLinks.contains(event.target) ||
+        menuToggle.contains(event.target);
+
+      if (!clickedInsideMenu) {
+        closeMenu();
+      }
+    });
+
+    window.addEventListener("resize", () => {
+      if (window.innerWidth > 760) {
+        closeMenu();
+      }
+    });
+  }
+
+  // -----------------------------------------
+  // ACTIVE NAVIGATION LINK
+  // -----------------------------------------
+
+  const sections = document.querySelectorAll(
+    "#home, #technology, #modules, #about, #contact"
+  );
+
+  if ("IntersectionObserver" in window) {
+    const sectionObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+
+          const sectionId = entry.target.id;
+
+          navItems.forEach((link) => {
+            const isActive =
+              link.getAttribute("href") === `#${sectionId}`;
+
+            link.classList.toggle("active", isActive);
+          });
+        });
+      },
+      {
+        rootMargin: "-30% 0px -55% 0px",
+        threshold: 0
+      }
+    );
+
+    sections.forEach((section) => {
+      sectionObserver.observe(section);
+    });
+  }
+
+  // -----------------------------------------
+  // SCROLL REVEAL ANIMATIONS
+  // -----------------------------------------
+
+  const revealElements = document.querySelectorAll(".reveal");
+
+  if (
+    prefersReducedMotion ||
+    !("IntersectionObserver" in window)
+  ) {
+    revealElements.forEach((element) => {
+      element.classList.add("is-visible");
+    });
+  } else {
+    const revealObserver = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        });
+      },
+      {
+        threshold: 0.12,
+        rootMargin: "0px 0px -35px 0px"
+      }
+    );
+
+    revealElements.forEach((element, index) => {
+      element.style.transitionDelay = `${(index % 3) * 90}ms`;
+      revealObserver.observe(element);
+    });
+  }
+
+  // -----------------------------------------
+  // ANIMATED STATISTICS
+  // -----------------------------------------
+
+  const statNumbers = document.querySelectorAll("[data-count]");
+
+  function animateCounter(element) {
+    const target = Number(element.dataset.count);
+    const suffix = element.dataset.suffix || "";
+
+    if (!Number.isFinite(target)) return;
+
+    if (prefersReducedMotion) {
+      element.textContent = `${target}${suffix}`;
+      return;
+    }
+
+    const duration = 1300;
+    const startTime = performance.now();
+
+    function updateCounter(currentTime) {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+
+      // Ease-out curve
+      const easedProgress = 1 - Math.pow(1 - progress, 4);
+      const currentValue = target * easedProgress;
+
+      const formattedValue =
+        target % 1 === 0
+          ? Math.round(currentValue)
+          : currentValue.toFixed(1);
+
+      element.textContent = `${formattedValue}${suffix}`;
+
+      if (progress < 1) {
+        requestAnimationFrame(updateCounter);
+      } else {
+        element.textContent = `${target}${suffix}`;
+      }
+    }
+
+    requestAnimationFrame(updateCounter);
+  }
+
+  if ("IntersectionObserver" in window) {
+    const counterObserver = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+
+          animateCounter(entry.target);
+          observer.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.6 }
+    );
+
+    statNumbers.forEach((stat) => {
+      counterObserver.observe(stat);
+    });
+  } else {
+    statNumbers.forEach(animateCounter);
+  }
+
+  // -----------------------------------------
+  // DIAGNOSTIC PROGRESS BARS
+  // -----------------------------------------
+
+  const progressBars = document.querySelectorAll("[data-progress]");
+
+  function revealProgressBar(bar) {
+    const value = Number(bar.dataset.progress);
+    const safeValue = Math.min(100, Math.max(0, value));
+
+    bar.style.setProperty("--progress-width", `${safeValue}%`);
+    bar.style.width = `${safeValue}%`;
+  }
+
+  if (
+    prefersReducedMotion ||
+    !("IntersectionObserver" in window)
+  ) {
+    progressBars.forEach(revealProgressBar);
+  } else {
+    const progressObserver = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+
+          revealProgressBar(entry.target);
+          observer.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.4 }
+    );
+
+    progressBars.forEach((bar) => {
+      progressObserver.observe(bar);
+    });
+  }
+
+  // -----------------------------------------
+  // CYBORG VISUAL POINTER EFFECT
+  // -----------------------------------------
+
+  const cyborgStage = document.getElementById("cyborgStage");
+
+  if (
+    cyborgStage &&
+    !prefersReducedMotion &&
+    window.matchMedia("(hover: hover) and (pointer: fine)").matches
+  ) {
+    cyborgStage.addEventListener("pointermove", (event) => {
+      const rect = cyborgStage.getBoundingClientRect();
+
+      const x = (event.clientX - rect.left) / rect.width;
+      const y = (event.clientY - rect.top) / rect.height;
+
+      const rotateY = (x - 0.5) * 5;
+      const rotateX = (0.5 - y) * 4;
+
+      const artwork = cyborgStage.querySelector(".cyborg-art");
+
+      if (artwork) {
+        artwork.style.transform =
+          `translateY(-4px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      }
+    });
+
+    cyborgStage.addEventListener("pointerleave", () => {
+      const artwork = cyborgStage.querySelector(".cyborg-art");
+
+      if (artwork) {
+        artwork.style.transform = "";
+      }
+    });
+  }
+
+  // -----------------------------------------
+  // FOOTER YEAR
+  // -----------------------------------------
+
+  const yearElement = document.getElementById("year");
+
+  if (yearElement) {
+    yearElement.textContent = new Date().getFullYear();
+  }
+
+  // -----------------------------------------
+  // CONSOLE MESSAGE
+  // -----------------------------------------
+
+  console.info(
+    "%c NEXUS-9 ",
+    "background:#00e5ff;color:#080a10;font-weight:bold;padding:5px 10px;"
+  );
+
+  console.info(
+    "System initialized. Welcome to the next frontier."
+  );
 });
