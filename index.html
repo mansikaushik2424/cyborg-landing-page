@@ -1,136 +1,633 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CYBERNETIX // Next-Gen Human-Augmentation Platform</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080a10">
+
+  <meta name="description" content="NEXUS-9 is a next-generation cybernetic intelligence platform exploring the future of human-machine evolution.">
+
+  <title>NEXUS-9 — Beyond Human</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
 </head>
+
 <body>
-  <!-- Ambient HUD Background Elements -->
-  <div class="grid-overlay"></div>
-  <div class="scanline"></div>
+  <div class="site-shell">
 
-  <!-- Navigation Bar -->
-  <header class="navbar">
-    <div class="logo">
-      <span class="logo-icon">⚡</span>
-      <span class="logo-text">CYBER<span class="highlight">NETIX</span></span>
-    </div>
-    <nav class="nav-links">
-      <a href="#hero">System</a>
-      <a href="#augs">Augmentations</a>
-      <a href="#specs">Diagnostics</a>
-      <a href="#contact">Interface</a>
-    </nav>
-    <button class="cta-btn-sm" onclick="scrollToContact()">INITIALIZE</button>
-  </header>
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
 
-  <!-- Hero Section -->
-  <section id="hero" class="hero-section">
-    <div class="hero-content">
-      <div class="hud-badge">[ STATUS: SYNCING WITH NEURAL MATRIX ]</div>
-      <h1 class="hero-title">
-        EVOLVE BEYOND <br />
-        <span class="glitch" data-text="HUMAN LIMITS">HUMAN LIMITS</span>
-      </h1>
-      <p class="hero-subtitle">
-        Next-generation cybernetic implants and neural integration frameworks designed to enhance speed, cognition, and sensory bandwidth.
-      </p>
-      <div class="hero-actions">
-        <a href="#augs" class="btn-primary">EXPLORE MODS</a>
-        <a href="#specs" class="btn-secondary">SYSTEM DIAGNOSTICS</a>
-      </div>
-    </div>
-    <div class="hero-graphic">
-      <div class="cyber-circle">
-        <div class="inner-core"></div>
-        <div class="hud-stat stat-1"><span>NEURAL SPEED</span><strong>120 TB/s</strong></div>
-        <div class="hud-stat stat-2"><span>LATENCY</span><strong>0.02 ms</strong></div>
-        <div class="hud-stat stat-3"><span>SYNAPSE RATING</span><strong>99.8%</strong></div>
-      </div>
-    </div>
-  </section>
+    <header class="navbar">
+      <a href="#home" class="brand" aria-label="NEXUS-9 home">
+        <span class="brand-symbol">N</span>
+        <span>NEXUS<span class="brand-accent">-9</span></span>
+      </a>
 
-  <!-- Augmentations Section -->
-  <section id="augs" class="features-section">
-    <div class="section-header">
-      <h2>// CYBERNETIC UPGRADES</h2>
-      <p>Modular sensory and biomechanical enhancements built for extreme performance.</p>
-    </div>
-    <div class="cards-grid">
-      <div class="cyber-card">
-        <div class="card-tag">MK-VII</div>
-        <div class="card-icon">👁️</div>
-        <h3>Ocular HUD Lens</h3>
-        <p>Real-time thermal imaging, tactical telemetry, and augmented sight across the electromagnetic spectrum.</p>
-        <button class="card-btn">SYS_VIEW</button>
-      </div>
-      <div class="cyber-card highlighted">
-        <div class="card-tag">PRO-SERIES</div>
-        <div class="card-icon">🧠</div>
-        <h3>Neural Synapse Core</h3>
-        <p>Overclock cognitive output and memory retention with zero latency neural processing units.</p>
-        <button class="card-btn">SYS_VIEW</button>
-      </div>
-      <div class="cyber-card">
-        <div class="card-tag">VX-200</div>
-        <div class="card-icon">🦾</div>
-        <h3>Bionic Frame V2</h3>
-        <p>High-grade titanium exoskeleton plating paired with carbon-fiber artificial muscular fibers.</p>
-        <button class="card-btn">SYS_VIEW</button>
-      </div>
-    </div>
-  </section>
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        aria-label="Open navigation"
+        aria-expanded="false"
+        aria-controls="navLinks"
+      >
+        <span></span>
+        <span></span>
+      </button>
 
-  <!-- Diagnostics / Metrics Section -->
-  <section id="specs" class="specs-section">
-    <div class="section-header">
-      <h2>// SYSTEM PERFORMANCE</h2>
-      <p>Benchmark data collected across active cyborg deployments.</p>
-    </div>
-    <div class="stats-grid">
-      <div class="stat-card">
-        <div class="stat-number" data-target="99.9">0</div>
-        <div class="stat-label">Neural Uptime (%)</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-number" data-target="2400">0</div>
-        <div class="stat-label">Active Deployments</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-number" data-target="0.01">0</div>
-        <div class="stat-label">Response Delay (ms)</div>
-      </div>
-    </div>
-  </section>
+      <nav class="nav-links" id="navLinks">
+        <a href="#home" class="nav-link active">Home</a>
+        <a href="#technology" class="nav-link">Technology</a>
+        <a href="#modules" class="nav-link">Modules</a>
+        <a href="#about" class="nav-link">About</a>
+      </nav>
 
-  <!-- Contact / Access Section -->
-  <section id="contact" class="contact-section">
-    <div class="contact-card">
-      <h2>INITIALIZE NEURAL LINK</h2>
-      <p>Submit your parameters to request early integration access.</p>
-      <form class="cyber-form" onsubmit="event.preventDefault(); handleFormSubmit();">
-        <div class="input-group">
-          <input type="text" id="username" placeholder="CALLSIGN / NAME" required />
+      <a href="#contact" class="nav-cta">
+        Initialize <span aria-hidden="true">↗</span>
+      </a>
+    </header>
+
+    <main>
+      <section class="hero section-container" id="home">
+
+        <div class="hero-content reveal">
+          <div class="status-pill">
+            <span class="status-dot"></span>
+            SYSTEM ONLINE
+            <span class="status-divider">/</span>
+            VERSION 9.0
+          </div>
+
+          <p class="eyebrow">THE NEXT EVOLUTION STARTS HERE</p>
+
+          <h1>
+            BEYOND<br>
+            <span class="outline-text">HUMAN</span><span class="accent-text">.</span>
+          </h1>
+
+          <p class="hero-description">
+            Where human potential meets machine intelligence.
+            Explore a new frontier of cybernetic technology,
+            adaptive systems, and limitless possibilities.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#technology" class="button button-primary">
+              Explore the system <span>↗</span>
+            </a>
+
+            <a href="#about" class="button button-secondary">
+              <span class="play-icon">▷</span>
+              Discover NEXUS
+            </a>
+          </div>
+
+          <div class="hero-stats">
+            <div class="stat">
+              <span class="stat-value" data-count="99" data-suffix=".9%">0</span>
+              <span class="stat-label">SYSTEM UPTIME</span>
+            </div>
+
+            <div class="stat">
+              <span class="stat-value" data-count="128" data-suffix="ms">0</span>
+              <span class="stat-label">NEURAL RESPONSE</span>
+            </div>
+
+            <div class="stat">
+              <span class="stat-value" data-count="24" data-suffix="/7">0</span>
+              <span class="stat-label">ACTIVE MONITORING</span>
+            </div>
+          </div>
         </div>
-        <div class="input-group">
-          <input type="email" id="useremail" placeholder="NEURAL EMAIL ADDRESS" required />
+
+        <div class="hero-visual reveal">
+          <div class="visual-topline">
+            <span>FIG. 009 — CYBERNETIC UNIT</span>
+            <span class="live-indicator">● LIVE FEED</span>
+          </div>
+
+          <div class="cyborg-stage" id="cyborgStage">
+            <div class="stage-grid"></div>
+            <div class="stage-ring ring-outer"></div>
+            <div class="stage-ring ring-middle"></div>
+            <div class="stage-ring ring-inner"></div>
+
+            <div class="orbit orbit-one"></div>
+            <div class="orbit orbit-two"></div>
+
+            <div class="cyborg-art">
+              <svg
+                viewBox="0 0 360 470"
+                role="img"
+                aria-labelledby="cyborgTitle cyborgDesc"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <title id="cyborgTitle">NEXUS-9 cybernetic humanoid</title>
+                <desc id="cyborgDesc">
+                  An original stylized futuristic cyborg head with mechanical
+                  details, a glowing cyan eye, and neon circuitry.
+                </desc>
+
+                <defs>
+                  <linearGradient id="faceGradient" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#d7e2ec"/>
+                    <stop offset="45%" stop-color="#7f96a9"/>
+                    <stop offset="100%" stop-color="#263443"/>
+                  </linearGradient>
+
+                  <linearGradient id="metalGradient" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stop-color="#263746"/>
+                    <stop offset="50%" stop-color="#a5bdca"/>
+                    <stop offset="100%" stop-color="#364857"/>
+                  </linearGradient>
+
+                  <linearGradient id="neckGradient" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#7894a8"/>
+                    <stop offset="100%" stop-color="#15212d"/>
+                  </linearGradient>
+
+                  <filter id="cyanGlow">
+                    <feGaussianBlur stdDeviation="5" result="blur"/>
+                    <feMerge>
+                      <feMergeNode in="blur"/>
+                      <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                  </filter>
+
+                  <filter id="softGlow">
+                    <feGaussianBlur stdDeviation="10"/>
+                  </filter>
+
+                  <clipPath id="headClip">
+                    <path d="M105 94 Q180 47 255 94 L269 167 L253 258 L218 300 L142 300 L107 258 L91 167 Z"/>
+                  </clipPath>
+                </defs>
+
+                <!-- Background glow -->
+                <ellipse cx="180" cy="230" rx="100" ry="140"
+                  fill="#00e5ff" opacity=".08" filter="url(#softGlow)"/>
+
+                <!-- Neck -->
+                <path d="M139 276 L134 333 L109 354 L109 386
+                  L251 386 L251 354 L226 333 L221 276 Z"
+                  fill="url(#neckGradient)" stroke="#829eaf" stroke-width="2"/>
+
+                <path d="M149 295 L149 344 L211 344 L211 295"
+                  fill="#152330" stroke="#526d80" stroke-width="2"/>
+
+                <path d="M157 310 H203 M157 321 H203 M157 332 H203"
+                  stroke="#00e5ff" stroke-width="3" opacity=".7"/>
+
+                <!-- Shoulder armor -->
+                <path d="M134 344 L91 356 L52 391 L39 432
+                  L133 432 L150 384 Z"
+                  fill="url(#metalGradient)" stroke="#6d8798" stroke-width="2"/>
+
+                <path d="M226 344 L269 356 L308 391 L321 432
+                  L227 432 L210 384 Z"
+                  fill="url(#metalGradient)" stroke="#6d8798" stroke-width="2"/>
+
+                <path d="M61 402 L119 402 M241 402 L299 402"
+                  stroke="#00e5ff" stroke-width="3" opacity=".8"/>
+
+                <path d="M65 414 L112 414 M248 414 L295 414"
+                  stroke="#344d60" stroke-width="4"/>
+
+                <!-- Head silhouette -->
+                <path d="M105 94 Q180 47 255 94 L269 167
+                  L253 258 L218 300 L142 300 L107 258 L91 167 Z"
+                  fill="url(#faceGradient)" stroke="#a3bdcc" stroke-width="2"/>
+
+                <!-- Facial shading -->
+                <g clip-path="url(#headClip)">
+                  <path d="M180 58 L180 303 L143 303 L106 258
+                    L91 167 L105 94 Z"
+                    fill="#d9e4ec" opacity=".13"/>
+
+                  <path d="M180 60 L255 94 L269 167 L253 258
+                    L218 300 L180 300 Z"
+                    fill="#08121d" opacity=".48"/>
+
+                  <path d="M98 145 L130 163 L125 243 L108 262"
+                    fill="none" stroke="#00e5ff" stroke-width="2" opacity=".65"/>
+
+                  <path d="M248 136 L264 152 L255 197"
+                    fill="none" stroke="#ff4f9a" stroke-width="3" opacity=".8"/>
+                </g>
+
+                <!-- Forehead mechanical panel -->
+                <path d="M130 88 L180 70 L230 88 L219 116 L180 126 L141 116 Z"
+                  fill="#182b3a" stroke="#819cac" stroke-width="2"/>
+
+                <path d="M146 96 L180 85 L214 96"
+                  fill="none" stroke="#00e5ff" stroke-width="2"/>
+
+                <circle cx="180" cy="104" r="5"
+                  fill="#00e5ff" filter="url(#cyanGlow)"/>
+
+                <!-- Left eye -->
+                <path d="M111 160 L157 151 L165 175 L133 190 L112 180 Z"
+                  fill="#132331" stroke="#526c7d" stroke-width="2"/>
+
+                <path d="M120 169 L153 163 L157 173 L134 181 Z"
+                  fill="#00e5ff" filter="url(#cyanGlow)"/>
+
+                <!-- Right eye -->
+                <path d="M195 151 L241 160 L240 180 L219 190 L187 175 Z"
+                  fill="#132331" stroke="#526c7d" stroke-width="2"/>
+
+                <path d="M203 163 L236 169 L222 181 L199 173 Z"
+                  fill="#ff4f9a" opacity=".9" filter="url(#cyanGlow)"/>
+
+                <!-- Nose -->
+                <path d="M180 161 L169 207 L181 216 L194 207"
+                  fill="none" stroke="#263b4c" stroke-width="5"
+                  stroke-linejoin="round"/>
+
+                <path d="M180 168 L180 205"
+                  stroke="#b9ced9" stroke-width="2" opacity=".8"/>
+
+                <!-- Cheek panels -->
+                <path d="M111 198 L143 209 L139 233 L117 226 Z"
+                  fill="#314858" stroke="#718a9a" stroke-width="2"/>
+
+                <path d="M249 198 L217 209 L221 233 L243 226 Z"
+                  fill="#314858" stroke="#718a9a" stroke-width="2"/>
+
+                <path d="M119 211 L135 217 M225 217 L241 211"
+                  stroke="#00e5ff" stroke-width="2"/>
+
+                <!-- Mouth plate -->
+                <path d="M145 237 L215 237 L207 260 L180 269 L153 260 Z"
+                  fill="#152533" stroke="#829aaa" stroke-width="2"/>
+
+                <path d="M155 246 H205 M160 253 H200 M170 260 H190"
+                  stroke="#8ba4b4" stroke-width="2"/>
+
+                <!-- Jaw -->
+                <path d="M142 268 L157 281 L203 281 L218 268"
+                  fill="none" stroke="#00e5ff" stroke-width="2" opacity=".7"/>
+
+                <!-- Side ear mechanisms -->
+                <path d="M91 160 L76 170 L76 218 L95 228 L102 202 Z"
+                  fill="#1a2c3b" stroke="#819cac" stroke-width="2"/>
+
+                <path d="M269 160 L284 170 L284 218 L265 228 L258 202 Z"
+                  fill="#1a2c3b" stroke="#819cac" stroke-width="2"/>
+
+                <circle cx="86" cy="193" r="8"
+                  fill="#00e5ff" opacity=".9" filter="url(#cyanGlow)"/>
+
+                <circle cx="274" cy="193" r="8"
+                  fill="#ff4f9a" opacity=".9" filter="url(#cyanGlow)"/>
+
+                <!-- Circuit traces -->
+                <g fill="none" stroke="#00e5ff" stroke-width="2" opacity=".8">
+                  <path d="M119 117 L105 127 L105 143"/>
+                  <path d="M127 120 L127 137 L139 144"/>
+                  <path d="M241 115 L253 127 L253 142"/>
+                  <path d="M233 121 L233 135 L222 143"/>
+                </g>
+
+                <g fill="#00e5ff">
+                  <circle cx="105" cy="143" r="3"/>
+                  <circle cx="139" cy="144" r="3"/>
+                  <circle cx="253" cy="142" r="3"/>
+                  <circle cx="222" cy="143" r="3"/>
+                </g>
+
+                <!-- Chest core -->
+                <path d="M150 354 L180 344 L210 354 L205 379
+                  L180 390 L155 379 Z"
+                  fill="#0d1b29" stroke="#718c9d" stroke-width="2"/>
+
+                <circle cx="180" cy="368" r="12"
+                  fill="#00e5ff" opacity=".2" filter="url(#cyanGlow)"/>
+
+                <circle cx="180" cy="368" r="6"
+                  fill="#00e5ff" filter="url(#cyanGlow)"/>
+
+                <!-- Chest lines -->
+                <path d="M119 367 L145 361 M215 361 L241 367"
+                  stroke="#00e5ff" stroke-width="2"/>
+
+                <path d="M118 378 L141 374 M219 374 L242 378"
+                  stroke="#526d80" stroke-width="3"/>
+              </svg>
+            </div>
+
+            <div class="scan-line"></div>
+
+            <div class="visual-label label-left">
+              <span class="label-marker"></span>
+              <span>NEURAL CORE</span>
+              <strong>ACTIVE</strong>
+            </div>
+
+            <div class="visual-label label-right">
+              <span class="label-marker pink-marker"></span>
+              <span>CYBERNETIC LINK</span>
+              <strong>CONNECTED</strong>
+            </div>
+
+            <div class="visual-coordinate">
+              <span>COORD.</span>
+              <span>37.7749° N</span>
+              <span>122.4194° W</span>
+            </div>
+          </div>
+
+          <div class="visual-bottomline">
+            <span>HUMAN × MACHINE</span>
+            <span class="visual-bottom-accent">EVOLUTION IN PROGRESS</span>
+          </div>
         </div>
-        <button type="submit" class="btn-primary full-width">TRANSMIT DATA</button>
-      </form>
-      <div id="form-feedback" class="feedback-msg"></div>
-    </div>
-  </section>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <p>© 2026 CYBERNETIX CORP // TECHFEST IIT BOMBAY CA PROGRAM TASK</p>
-  </footer>
+        <div class="hero-bottom-note">
+          <span>SCROLL TO EXPLORE</span>
+          <span class="scroll-line"></span>
+          <span>01 / 04</span>
+        </div>
+      </section>
 
-  <script src="script.js"></script>
+      <section class="ticker" aria-label="Technology keywords">
+        <div class="ticker-track">
+          <span>NEURAL INTERFACE</span><i>✳</i>
+          <span>CYBERNETIC SYSTEMS</span><i>✳</i>
+          <span>HUMAN AUGMENTATION</span><i>✳</i>
+          <span>ADAPTIVE INTELLIGENCE</span><i>✳</i>
+          <span>NEURAL INTERFACE</span><i>✳</i>
+          <span>CYBERNETIC SYSTEMS</span><i>✳</i>
+          <span>HUMAN AUGMENTATION</span><i>✳</i>
+          <span>ADAPTIVE INTELLIGENCE</span><i>✳</i>
+        </div>
+      </section>
+
+      <section class="technology section-container" id="technology">
+        <div class="section-heading reveal">
+          <div>
+            <p class="eyebrow">01 / THE TECHNOLOGY</p>
+            <h2>BUILT FOR THE<br><span class="outline-text">UNIMAGINED.</span></h2>
+          </div>
+
+          <p class="section-intro">
+            A conceptual cybernetic ecosystem designed around one idea:
+            technology should expand what is possible, not define its limits.
+          </p>
+        </div>
+
+        <div class="technology-grid">
+          <article class="tech-card reveal">
+            <div class="card-top">
+              <span class="card-index">01</span>
+              <span class="card-icon">⌘</span>
+            </div>
+
+            <div class="tech-graphic neural-graphic" aria-hidden="true">
+              <span class="neural-node node-a"></span>
+              <span class="neural-node node-b"></span>
+              <span class="neural-node node-c"></span>
+              <span class="neural-node node-d"></span>
+              <span class="neural-node node-e"></span>
+              <span class="neural-node node-f"></span>
+              <span class="neural-line line-a"></span>
+              <span class="neural-line line-b"></span>
+              <span class="neural-line line-c"></span>
+              <span class="neural-line line-d"></span>
+              <span class="neural-core"></span>
+            </div>
+
+            <h3>NEURAL LINK</h3>
+            <p>
+              A conceptual interface connecting human intention
+              with next-generation digital systems.
+            </p>
+
+            <div class="card-footer">
+              <span>INTERFACE SYSTEM</span>
+              <span class="card-arrow">↗</span>
+            </div>
+          </article>
+
+          <article class="tech-card reveal">
+            <div class="card-top">
+              <span class="card-index">02</span>
+              <span class="card-icon">◈</span>
+            </div>
+
+            <div class="tech-graphic pulse-graphic" aria-hidden="true">
+              <div class="pulse-circle pulse-a"></div>
+              <div class="pulse-circle pulse-b"></div>
+              <div class="pulse-circle pulse-c"></div>
+              <div class="pulse-center">N9</div>
+            </div>
+
+            <h3>ADAPTIVE CORE</h3>
+            <p>
+              Intelligent systems imagined to respond, learn,
+              and adapt to changing environments.
+            </p>
+
+            <div class="card-footer">
+              <span>INTELLIGENCE SYSTEM</span>
+              <span class="card-arrow">↗</span>
+            </div>
+          </article>
+
+          <article class="tech-card reveal">
+            <div class="card-top">
+              <span class="card-index">03</span>
+              <span class="card-icon">⟡</span>
+            </div>
+
+            <div class="tech-graphic shield-graphic" aria-hidden="true">
+              <div class="shield-shape">
+                <span class="shield-core">N</span>
+              </div>
+              <span class="shield-orbit"></span>
+              <span class="shield-signal signal-a"></span>
+              <span class="shield-signal signal-b"></span>
+            </div>
+
+            <h3>SECURE BY DESIGN</h3>
+            <p>
+              A security-first design philosophy built around
+              resilience, clarity, and system integrity.
+            </p>
+
+            <div class="card-footer">
+              <span>PROTECTION SYSTEM</span>
+              <span class="card-arrow">↗</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="system-section" id="modules">
+        <div class="section-container system-inner">
+          <div class="system-copy reveal">
+            <p class="eyebrow">02 / SYSTEM DIAGNOSTICS</p>
+            <h2>EVERY DETAIL.<br><span class="accent-text">ENGINEERED.</span></h2>
+
+            <p class="system-description">
+              Explore the conceptual systems that power the NEXUS-9
+              universe. Each module represents a different dimension
+              of the human-machine relationship.
+            </p>
+
+            <a href="#contact" class="button button-primary">
+              Access the interface <span>↗</span>
+            </a>
+          </div>
+
+          <div class="diagnostics-panel reveal">
+            <div class="panel-header">
+              <span>SYS.DIAGNOSTICS</span>
+              <span class="panel-status"><span class="status-dot"></span> OPERATIONAL</span>
+            </div>
+
+            <div class="diagnostic-row">
+              <div class="diagnostic-info">
+                <span>Neural interface</span>
+                <span>98%</span>
+              </div>
+              <div class="progress-track">
+                <div class="progress-fill" data-progress="98"></div>
+              </div>
+            </div>
+
+            <div class="diagnostic-row">
+              <div class="diagnostic-info">
+                <span>Adaptive processing</span>
+                <span>87%</span>
+              </div>
+              <div class="progress-track">
+                <div class="progress-fill pink-fill" data-progress="87"></div>
+              </div>
+            </div>
+
+            <div class="diagnostic-row">
+              <div class="diagnostic-info">
+                <span>System integrity</span>
+                <span>100%</span>
+              </div>
+              <div class="progress-track">
+                <div class="progress-fill" data-progress="100"></div>
+              </div>
+            </div>
+
+            <div class="diagnostic-row">
+              <div class="diagnostic-info">
+                <span>Signal stability</span>
+                <span>94%</span>
+              </div>
+              <div class="progress-track">
+                <div class="progress-fill pink-fill" data-progress="94"></div>
+              </div>
+            </div>
+
+            <div class="terminal">
+              <div class="terminal-title">
+                <span>TERMINAL OUTPUT</span>
+                <span>● ● ●</span>
+              </div>
+
+              <p><span class="terminal-symbol">&gt;</span> Initializing NEXUS-9 interface...</p>
+              <p><span class="terminal-symbol">&gt;</span> Loading cybernetic modules...</p>
+              <p><span class="terminal-success">&gt;</span> All systems operational.</p>
+              <p class="terminal-cursor"><span class="terminal-symbol">&gt;</span> <span class="cursor-block">_</span></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="about section-container" id="about">
+        <div class="about-heading reveal">
+          <p class="eyebrow">03 / THE VISION</p>
+          <h2>THE FUTURE IS<br><span class="outline-text">A CHOICE.</span></h2>
+        </div>
+
+        <div class="about-content reveal">
+          <p class="about-statement">
+            We don't believe the future is something we wait for.
+            It's something we <span>design.</span>
+          </p>
+
+          <p class="about-description">
+            NEXUS-9 is a fictional concept exploring the visual language
+            of advanced cybernetics. It imagines a world where precision
+            engineering, adaptive intelligence, and human creativity
+            meet in a single digital ecosystem.
+          </p>
+
+          <div class="about-meta">
+            <div>
+              <span class="meta-label">PROJECT CLASS</span>
+              <strong>CONCEPT / EXPERIMENTAL</strong>
+            </div>
+
+            <div>
+              <span class="meta-label">DESIGN DIRECTION</span>
+              <strong>CYBERNETIC FUTURISM</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="contact-section section-container" id="contact">
+        <div class="contact-card reveal">
+          <div class="contact-orb" aria-hidden="true"></div>
+
+          <div class="contact-content">
+            <p class="eyebrow">04 / YOUR NEXT MOVE</p>
+            <h2>READY TO<br><span class="accent-text">EVOLVE?</span></h2>
+
+            <p>
+              The next chapter of human-machine design begins
+              with a single connection.
+            </p>
+
+            <a href="mailto:hello@example.com?subject=NEXUS-9%20Project%20Enquiry"
+              class="button button-primary">
+              Establish connection <span>↗</span>
+            </a>
+
+            <p class="contact-note">
+              DEMO INTERFACE · FICTIONAL CONCEPT PROJECT
+            </p>
+          </div>
+
+          <div class="contact-code" aria-hidden="true">
+            <span>N9</span>
+            <span>∞</span>
+            <span>01001</span>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer section-container">
+      <a href="#home" class="brand footer-brand">
+        <span class="brand-symbol">N</span>
+        <span>NEXUS<span class="brand-accent">-9</span></span>
+      </a>
+
+      <p>DESIGNED FOR THE NEXT FRONTIER.</p>
+
+      <a href="#home" class="back-to-top">
+        BACK TO TOP ↑
+      </a>
+
+      <span class="copyright">© <span id="year">2026</span> NEXUS-9</span>
+    </footer>
+
+  </div>
 </body>
 </html>
